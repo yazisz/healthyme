@@ -1,405 +1,397 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2709
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HealthyMe 💧</title>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-<meta charset="UTF-8" />\
-<meta name="viewport" content="width=device-width, initial-scale=1" />\
-<title>HealthyMe \uc0\u55357 \u56487 </title>\
-\
-<style>\
-  :root\{\
-    --bg1:#cfe9ff;\
-    --bg2:#f3d9ff;\
-    --ink:#1f3556;\
-    --muted:#5a6b85;\
-    --card:#ffffffcc;\
-    --stroke:#cfe0ff;\
-    --shadow: 0 18px 40px rgba(0,0,0,.12);\
-  \}\
-\
-  *\{ box-sizing:border-box; \}\
-  body\{\
-    margin:0;\
-    min-height:100vh;\
-    display:grid;\
-    place-items:center;\
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;\
-    color:var(--ink);\
-    background: radial-gradient(1200px 600px at 20% 10%, #ffffffa8, transparent 50%),\
-                radial-gradient(900px 500px at 90% 40%, #ffffff9a, transparent 55%),\
-                linear-gradient(135deg, var(--bg1), var(--bg2));\
-    padding:24px;\
-  \}\
-\
-  /* Phone frame */\
-  .phone\{\
-    width:min(420px, 92vw);\
-    border-radius:38px;\
-    padding:14px;\
-    background: linear-gradient(180deg, #0f172a, #1f2937);\
-    box-shadow: var(--shadow);\
-    position:relative;\
-  \}\
-  .screen\{\
-    border-radius:28px;\
-    overflow:hidden;\
-    background: linear-gradient(180deg, #e9f6ff, #f7e9ff);\
-    min-height:760px;\
-    position:relative;\
-  \}\
-\
-  /* Notch */\
-  .notch\{\
-    position:absolute;\
-    top:10px;\
-    left:50%;\
-    transform:translateX(-50%);\
-    width:150px;\
-    height:26px;\
-    border-radius:20px;\
-    background:#0b1220;\
-    opacity:.9;\
-    z-index:5;\
-  \}\
-\
-  /* App header */\
-  .app\{\
-    padding:40px 18px 18px;\
-  \}\
-  .title\{\
-    display:flex;\
-    align-items:center;\
-    justify-content:center;\
-    gap:8px;\
-    font-weight:800;\
-    letter-spacing:.2px;\
-    font-size:22px;\
-    margin:0;\
-  \}\
-  .subtitle\{\
-    text-align:center;\
-    margin:6px 0 16px;\
-    color:var(--muted);\
-    font-size:13px;\
-  \}\
-\
-  /* Cards like the image */\
-  .card\{\
-    background: var(--card);\
-    backdrop-filter: blur(6px);\
-    border:1px solid #ffffff;\
-    border-radius:18px;\
-    padding:14px;\
-    box-shadow: 0 8px 18px rgba(31,53,86,.08);\
-  \}\
-  .card + .card\{ margin-top:12px; \}\
-\
-  .card h2\{\
-    margin:0 0 10px;\
-    font-size:18px;\
-    display:flex;\
-    align-items:center;\
-    gap:8px;\
-  \}\
-  .drop\{\
-    width:22px;height:22px;\
-    display:grid;place-items:center;\
-    border-radius:9px;\
-    background: linear-gradient(135deg, #4facfe, #43e97b);\
-    color:white;\
-    font-weight:900;\
-  \}\
-\
-  /* Daily goal row (8 cups) */\
-  .goal-row\{\
-    display:flex;\
-    gap:10px;\
-    justify-content:space-between;\
-    align-items:flex-end;\
-  \}\
-  .mini-cups\{\
-    display:flex;\
-    gap:6px;\
-    justify-content:center;\
-    flex-wrap:nowrap;\
-  \}\
-  .mini\{\
-    width:22px;\
-    height:26px;\
-    border-radius:7px;\
-    border:2px solid var(--stroke);\
-    background:#ffffffa6;\
-    cursor:pointer;\
-    position:relative;\
-    transition: transform .12s ease;\
-  \}\
-  .mini:hover\{ transform: translateY(-1px) scale(1.03); \}\
-  .mini.filled\{\
-    border-color: transparent;\
-    background: linear-gradient(135deg, #4facfe, #43e97b);\
-  \}\
-\
-  .mini.purple.filled\{\
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);\
-  \}\
-\
-  .days-mini\{\
-    display:flex;\
-    justify-content:space-between;\
-    gap:6px;\
-    margin-top:8px;\
-    color:var(--muted);\
-    font-size:11px;\
-  \}\
-  .days-mini span\{ width:22px; text-align:center; \}\
-\
-  /* Weekly list like phone */\
-  .week\{\
-    display:flex;\
-    flex-direction:column;\
-    gap:10px;\
-  \}\
-  .row\{\
-    display:flex;\
-    align-items:center;\
-    gap:10px;\
-  \}\
-  .daylabel\{\
-    width:46px;\
-    font-weight:700;\
-    color:#31466b;\
-  \}\
-  .cups\{\
-    display:flex;\
-    gap:7px;\
-    flex-wrap:nowrap;\
-  \}\
-  .cup\{\
-    width:26px;\
-    height:30px;\
-    border-radius:9px;\
-    border:2px solid var(--stroke);\
-    background:#ffffffa6;\
-    cursor:pointer;\
-    transition: transform .12s ease, box-shadow .12s ease;\
-  \}\
-  .cup:hover\{\
-    transform: translateY(-1px) scale(1.03);\
-    box-shadow: 0 6px 14px rgba(47,108,210,.12);\
-  \}\
-  .cup.filled\{\
-    border-color: transparent;\
-    background: linear-gradient(135deg, #4facfe, #43e97b);\
-  \}\
-  .cup.purple.filled\{\
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);\
-  \}\
-\
-  /* Footer buttons */\
-  .actions\{\
-    display:flex;\
-    gap:10px;\
-    margin-top:12px;\
-  \}\
-  button\{\
-    flex:1;\
-    border:none;\
-    border-radius:14px;\
-    padding:10px 12px;\
-    font-weight:700;\
-    cursor:pointer;\
-    color:#0b1b33;\
-    background:#ffffffcc;\
-    box-shadow: 0 8px 18px rgba(31,53,86,.08);\
-  \}\
-  button.primary\{\
-    color:white;\
-    background: linear-gradient(135deg, #4facfe, #43e97b);\
-  \}\
-\
-  .note\{\
-    text-align:center;\
-    margin-top:10px;\
-    font-size:12px;\
-    color:var(--muted);\
-  \}\
-</style>\
-</head>\
-\
-<body>\
-  <div class="phone">\
-    <div class="screen">\
-      <div class="notch"></div>\
-\
-      <div class="app">\
-        <h1 class="title">HealthyMe <span aria-hidden="true">\uc0\u55357 \u56487 </span></h1>\
-        <div class="subtitle">Track your daily water intake</div>\
-\
-        <div class="card">\
-          <h2><span class="drop">\uc0\u55357 \u56487 </span>Daily Goal: <span id="goalText">8 Cups</span></h2>\
-\
-          <!-- Mini preview row (Mon..Sun) -->\
-          <div class="mini-cups" id="miniCups"></div>\
-          <div class="days-mini">\
-            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>\
-          </div>\
-\
-          <div class="note">Tap a day above to edit that day below.</div>\
-        </div>\
-\
-        <div class="card">\
-          <h2>Weekly Tracker</h2>\
-          <div class="week" id="week"></div>\
-\
-          <div class="actions">\
-            <button class="primary" id="todayBtn">Go to Today</button>\
-            <button id="resetBtn">Reset Week</button>\
-          </div>\
-        </div>\
-\
-        <div class="note">Progress is saved on this device (local storage).</div>\
-      </div>\
-    </div>\
-  </div>\
-\
-<script>\
-  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];\
-  const cupsPerDay = 8;\
-\
-  // Storage keys\
-  const KEY = "healthyme_week_v1";\
-  const SEL = "healthyme_selected_day_v1";\
-\
-  // Load or init data: \{ Mon: [bool x8], ... \}\
-  let data = JSON.parse(localStorage.getItem(KEY)) || Object.fromEntries(\
-    days.map(d => [d, Array(cupsPerDay).fill(false)])\
-  );\
-\
-  // Selected day for editing (defaults to today)\
-  const todayIndex = (() => \{\
-    const js = new Date().getDay(); // Sun=0\
-    return (js === 0) ? 6 : js - 1; // Mon=0..Sun=6\
-  \})();\
-\
-  let selectedDay = localStorage.getItem(SEL) || days[todayIndex];\
-\
-  const miniCupsEl = document.getElementById("miniCups");\
-  const weekEl = document.getElementById("week");\
-  const resetBtn = document.getElementById("resetBtn");\
-  const todayBtn = document.getElementById("todayBtn");\
-\
-  function save()\{\
-    localStorage.setItem(KEY, JSON.stringify(data));\
-    localStorage.setItem(SEL, selectedDay);\
-  \}\
-\
-  function countFilled(day)\{\
-    return data[day].filter(Boolean).length;\
-  \}\
-\
-  function renderMini()\{\
-    miniCupsEl.innerHTML = "";\
-    days.forEach((d, idx) => \{\
-      const filled = countFilled(d);\
-      const mini = document.createElement("div");\
-      mini.className = "mini" + (filled >= cupsPerDay ? " purple" : "");\
-      if (filled > 0) mini.classList.add("filled");\
-\
-      // show selection ring\
-      if (d === selectedDay) \{\
-        mini.style.outline = "3px solid rgba(79,172,254,.55)";\
-        mini.style.outlineOffset = "3px";\
-      \}\
-\
-      mini.title = `$\{d\}: $\{filled\}/$\{cupsPerDay\} cups`;\
-      mini.onclick = () => \{\
-        selectedDay = d;\
-        save();\
-        render();\
-      \};\
-\
-      miniCupsEl.appendChild(mini);\
-    \});\
-  \}\
-\
-  function renderWeek()\{\
-    weekEl.innerHTML = "";\
-    days.forEach((d) => \{\
-      const row = document.createElement("div");\
-      row.className = "row";\
-\
-      const label = document.createElement("div");\
-      label.className = "daylabel";\
-      label.textContent = d + ":";\
-\
-      const cups = document.createElement("div");\
-      cups.className = "cups";\
-\
-      for (let i=0; i<cupsPerDay; i++)\{\
-        const c = document.createElement("div");\
-        c.className = "cup";\
-\
-        // Only allow clicking cups for selected day (matches \'93edit this day\'94 feel)\
-        const clickable = (d === selectedDay);\
-        c.style.opacity = clickable ? "1" : ".55";\
-        c.style.pointerEvents = clickable ? "auto" : "none";\
-\
-        // filled state\
-        if (data[d][i]) c.classList.add("filled");\
-\
-        // if day completed -> use purple style (like the image having color variation)\
-        if (countFilled(d) >= cupsPerDay) c.classList.add("purple");\
-\
-        c.title = clickable ? "Tap to toggle" : `Select $\{d\} above to edit`;\
-        c.onclick = () => \{\
-          data[d][i] = !data[d][i];\
-          save();\
-          render();\
-        \};\
-\
-        cups.appendChild(c);\
-      \}\
-\
-      // Highlight the selected day row\
-      if (d === selectedDay)\{\
-        row.style.padding = "10px";\
-        row.style.borderRadius = "16px";\
-        row.style.background = "rgba(255,255,255,.55)";\
-        row.style.border = "1px solid rgba(255,255,255,.8)";\
-      \}\
-\
-      row.appendChild(label);\
-      row.appendChild(cups);\
-      weekEl.appendChild(row);\
-    \});\
-  \}\
-\
-  function render()\{\
-    renderMini();\
-    renderWeek();\
-  \}\
-\
-  resetBtn.onclick = () => \{\
-    if (!confirm("Reset the whole week?")) return;\
-    days.forEach(d => data[d] = Array(cupsPerDay).fill(false));\
-    save();\
-    render();\
-  \};\
-\
-  todayBtn.onclick = () => \{\
-    selectedDay = days[todayIndex];\
-    save();\
-    render();\
-  \};\
-\
-  render();\
-</script>\
-</body>\
-</html>\
-}
+<style>
+  :root{
+    --bg1:#cfe9ff;
+    --bg2:#f3d9ff;
+    --ink:#1f3556;
+    --muted:#5a6b85;
+    --card:#ffffffcc;
+    --stroke:#cfe0ff;
+    --shadow: 0 18px 40px rgba(0,0,0,.12);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--ink);
+    background: radial-gradient(1200px 600px at 20% 10%, #ffffffa8, transparent 50%),
+                radial-gradient(900px 500px at 90% 40%, #ffffff9a, transparent 55%),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding:24px;
+  }
+
+  /* Phone frame */
+  .phone{
+    width:min(420px, 92vw);
+    border-radius:38px;
+    padding:14px;
+    background: linear-gradient(180deg, #0f172a, #1f2937);
+    box-shadow: var(--shadow);
+    position:relative;
+  }
+  .screen{
+    border-radius:28px;
+    overflow:hidden;
+    background: linear-gradient(180deg, #e9f6ff, #f7e9ff);
+    min-height:760px;
+    position:relative;
+  }
+
+  /* Notch */
+  .notch{
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:150px;
+    height:26px;
+    border-radius:20px;
+    background:#0b1220;
+    opacity:.9;
+    z-index:5;
+  }
+
+  /* App header */
+  .app{
+    padding:40px 18px 18px;
+  }
+  .title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-weight:800;
+    letter-spacing:.2px;
+    font-size:22px;
+    margin:0;
+  }
+  .subtitle{
+    text-align:center;
+    margin:6px 0 16px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* Cards like the image */
+  .card{
+    background: var(--card);
+    backdrop-filter: blur(6px);
+    border:1px solid #ffffff;
+    border-radius:18px;
+    padding:14px;
+    box-shadow: 0 8px 18px rgba(31,53,86,.08);
+  }
+  .card + .card{ margin-top:12px; }
+
+  .card h2{
+    margin:0 0 10px;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .drop{
+    width:22px;height:22px;
+    display:grid;place-items:center;
+    border-radius:9px;
+    background: linear-gradient(135deg, #4facfe, #43e97b);
+    color:white;
+    font-weight:900;
+  }
+
+  /* Daily goal row (8 cups) */
+  .goal-row{
+    display:flex;
+    gap:10px;
+    justify-content:space-between;
+    align-items:flex-end;
+  }
+  .mini-cups{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    flex-wrap:nowrap;
+  }
+  .mini{
+    width:22px;
+    height:26px;
+    border-radius:7px;
+    border:2px solid var(--stroke);
+    background:#ffffffa6;
+    cursor:pointer;
+    position:relative;
+    transition: transform .12s ease;
+  }
+  .mini:hover{ transform: translateY(-1px) scale(1.03); }
+  .mini.filled{
+    border-color: transparent;
+    background: linear-gradient(135deg, #4facfe, #43e97b);
+  }
+
+  .mini.purple.filled{
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  }
+
+  .days-mini{
+    display:flex;
+    justify-content:space-between;
+    gap:6px;
+    margin-top:8px;
+    color:var(--muted);
+    font-size:11px;
+  }
+  .days-mini span{ width:22px; text-align:center; }
+
+  /* Weekly list like phone */
+  .week{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .daylabel{
+    width:46px;
+    font-weight:700;
+    color:#31466b;
+  }
+  .cups{
+    display:flex;
+    gap:7px;
+    flex-wrap:nowrap;
+  }
+  .cup{
+    width:26px;
+    height:30px;
+    border-radius:9px;
+    border:2px solid var(--stroke);
+    background:#ffffffa6;
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .cup:hover{
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 6px 14px rgba(47,108,210,.12);
+  }
+  .cup.filled{
+    border-color: transparent;
+    background: linear-gradient(135deg, #4facfe, #43e97b);
+  }
+  .cup.purple.filled{
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  }
+
+  /* Footer buttons */
+  .actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+  }
+  button{
+    flex:1;
+    border:none;
+    border-radius:14px;
+    padding:10px 12px;
+    font-weight:700;
+    cursor:pointer;
+    color:#0b1b33;
+    background:#ffffffcc;
+    box-shadow: 0 8px 18px rgba(31,53,86,.08);
+  }
+  button.primary{
+    color:white;
+    background: linear-gradient(135deg, #4facfe, #43e97b);
+  }
+
+  .note{
+    text-align:center;
+    margin-top:10px;
+    font-size:12px;
+    color:var(--muted);
+  }
+</style>
+</head>
+
+<body>
+  <div class="phone">
+    <div class="screen">
+      <div class="notch"></div>
+
+      <div class="app">
+        <h1 class="title">HealthyMe <span aria-hidden="true">💧</span></h1>
+        <div class="subtitle">Track your daily water intake</div>
+
+        <div class="card">
+          <h2><span class="drop">💧</span>Daily Goal: <span id="goalText">8 Cups</span></h2>
+
+          <!-- Mini preview row (Mon..Sun) -->
+          <div class="mini-cups" id="miniCups"></div>
+          <div class="days-mini">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+
+          <div class="note">Tap a day above to edit that day below.</div>
+        </div>
+
+        <div class="card">
+          <h2>Weekly Tracker</h2>
+          <div class="week" id="week"></div>
+
+          <div class="actions">
+            <button class="primary" id="todayBtn">Go to Today</button>
+            <button id="resetBtn">Reset Week</button>
+          </div>
+        </div>
+
+        <div class="note">Progress is saved on this device (local storage).</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const cupsPerDay = 8;
+
+  // Storage keys
+  const KEY = "healthyme_week_v1";
+  const SEL = "healthyme_selected_day_v1";
+
+  // Load or init data: { Mon: [bool x8], ... }
+  let data = JSON.parse(localStorage.getItem(KEY)) || Object.fromEntries(
+    days.map(d => [d, Array(cupsPerDay).fill(false)])
+  );
+
+  // Selected day for editing (defaults to today)
+  const todayIndex = (() => {
+    const js = new Date().getDay(); // Sun=0
+    return (js === 0) ? 6 : js - 1; // Mon=0..Sun=6
+  })();
+
+  let selectedDay = localStorage.getItem(SEL) || days[todayIndex];
+
+  const miniCupsEl = document.getElementById("miniCups");
+  const weekEl = document.getElementById("week");
+  const resetBtn = document.getElementById("resetBtn");
+  const todayBtn = document.getElementById("todayBtn");
+
+  function save(){
+    localStorage.setItem(KEY, JSON.stringify(data));
+    localStorage.setItem(SEL, selectedDay);
+  }
+
+  function countFilled(day){
+    return data[day].filter(Boolean).length;
+  }
+
+  function renderMini(){
+    miniCupsEl.innerHTML = "";
+    days.forEach((d, idx) => {
+      const filled = countFilled(d);
+      const mini = document.createElement("div");
+      mini.className = "mini" + (filled >= cupsPerDay ? " purple" : "");
+      if (filled > 0) mini.classList.add("filled");
+
+      // show selection ring
+      if (d === selectedDay) {
+        mini.style.outline = "3px solid rgba(79,172,254,.55)";
+        mini.style.outlineOffset = "3px";
+      }
+
+      mini.title = `${d}: ${filled}/${cupsPerDay} cups`;
+      mini.onclick = () => {
+        selectedDay = d;
+        save();
+        render();
+      };
+
+      miniCupsEl.appendChild(mini);
+    });
+  }
+
+  function renderWeek(){
+    weekEl.innerHTML = "";
+    days.forEach((d) => {
+      const row = document.createElement("div");
+      row.className = "row";
+
+      const label = document.createElement("div");
+      label.className = "daylabel";
+      label.textContent = d + ":";
+
+      const cups = document.createElement("div");
+      cups.className = "cups";
+
+      for (let i=0; i<cupsPerDay; i++){
+        const c = document.createElement("div");
+        c.className = "cup";
+
+        // Only allow clicking cups for selected day (matches “edit this day” feel)
+        const clickable = (d === selectedDay);
+        c.style.opacity = clickable ? "1" : ".55";
+        c.style.pointerEvents = clickable ? "auto" : "none";
+
+        // filled state
+        if (data[d][i]) c.classList.add("filled");
+
+        // if day completed -> use purple style (like the image having color variation)
+        if (countFilled(d) >= cupsPerDay) c.classList.add("purple");
+
+        c.title = clickable ? "Tap to toggle" : `Select ${d} above to edit`;
+        c.onclick = () => {
+          data[d][i] = !data[d][i];
+          save();
+          render();
+        };
+
+        cups.appendChild(c);
+      }
+
+      // Highlight the selected day row
+      if (d === selectedDay){
+        row.style.padding = "10px";
+        row.style.borderRadius = "16px";
+        row.style.background = "rgba(255,255,255,.55)";
+        row.style.border = "1px solid rgba(255,255,255,.8)";
+      }
+
+      row.appendChild(label);
+      row.appendChild(cups);
+      weekEl.appendChild(row);
+    });
+  }
+
+  function render(){
+    renderMini();
+    renderWeek();
+  }
+
+  resetBtn.onclick = () => {
+    if (!confirm("Reset the whole week?")) return;
+    days.forEach(d => data[d] = Array(cupsPerDay).fill(false));
+    save();
+    render();
+  };
+
+  todayBtn.onclick = () => {
+    selectedDay = days[todayIndex];
+    save();
+    render();
+  };
+
+  render();
+</script>
+</body>
+</html>
