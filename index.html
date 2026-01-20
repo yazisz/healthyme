@@ -30,7 +30,6 @@
     padding:24px;
   }
 
-  /* Phone frame */
   .phone{
     width:min(420px, 92vw);
     border-radius:38px;
@@ -43,11 +42,10 @@
     border-radius:28px;
     overflow:hidden;
     background: linear-gradient(180deg, #e9f6ff, #f7e9ff);
-    min-height:760px;
+    min-height:780px;
     position:relative;
   }
 
-  /* Notch */
   .notch{
     position:absolute;
     top:10px;
@@ -57,32 +55,28 @@
     height:26px;
     border-radius:20px;
     background:#0b1220;
-    opacity:.9;
+    opacity:.92;
     z-index:5;
   }
 
-  /* App header */
-  .app{
-    padding:40px 18px 18px;
-  }
+  .app{ padding:40px 18px 18px; }
+
   .title{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-    font-weight:800;
-    letter-spacing:.2px;
+    font-weight:900;
     font-size:22px;
     margin:0;
   }
   .subtitle{
     text-align:center;
-    margin:6px 0 16px;
+    margin:6px 0 14px;
     color:var(--muted);
     font-size:13px;
   }
 
-  /* Cards like the image */
   .card{
     background: var(--card);
     backdrop-filter: blur(6px);
@@ -100,6 +94,7 @@
     align-items:center;
     gap:8px;
   }
+
   .drop{
     width:22px;height:22px;
     display:grid;place-items:center;
@@ -109,13 +104,23 @@
     font-weight:900;
   }
 
-  /* Daily goal row (8 cups) */
-  .goal-row{
-    display:flex;
-    gap:10px;
-    justify-content:space-between;
-    align-items:flex-end;
+  /* Info section text */
+  .info{
+    text-align:left;
+    display:grid;
+    gap:8px;
+    font-size:13px;
+    line-height:1.4;
+    color:#2a3c5f;
   }
+  .info b{ color:#17335c; }
+  .info .q{
+    padding:10px 12px;
+    border-radius:14px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.9);
+  }
+
   .mini-cups{
     display:flex;
     gap:6px;
@@ -129,7 +134,6 @@
     border:2px solid var(--stroke);
     background:#ffffffa6;
     cursor:pointer;
-    position:relative;
     transition: transform .12s ease;
   }
   .mini:hover{ transform: translateY(-1px) scale(1.03); }
@@ -137,7 +141,6 @@
     border-color: transparent;
     background: linear-gradient(135deg, #4facfe, #43e97b);
   }
-
   .mini.purple.filled{
     background: linear-gradient(135deg, #8b5cf6, #ec4899);
   }
@@ -152,7 +155,6 @@
   }
   .days-mini span{ width:22px; text-align:center; }
 
-  /* Weekly list like phone */
   .week{
     display:flex;
     flex-direction:column;
@@ -165,7 +167,7 @@
   }
   .daylabel{
     width:46px;
-    font-weight:700;
+    font-weight:800;
     color:#31466b;
   }
   .cups{
@@ -194,7 +196,6 @@
     background: linear-gradient(135deg, #8b5cf6, #ec4899);
   }
 
-  /* Footer buttons */
   .actions{
     display:flex;
     gap:10px;
@@ -205,7 +206,7 @@
     border:none;
     border-radius:14px;
     padding:10px 12px;
-    font-weight:700;
+    font-weight:800;
     cursor:pointer;
     color:#0b1b33;
     background:#ffffffcc;
@@ -234,10 +235,20 @@
         <h1 class="title">HealthyMe <span aria-hidden="true">💧</span></h1>
         <div class="subtitle">Track your daily water intake</div>
 
+        <!-- ✅ Project explanation added here -->
+        <div class="card">
+          <h2><span class="drop">📌</span>Project Summary</h2>
+          <div class="info">
+            <div class="q"><b>App name:</b> HealthyMe</div>
+            <div class="q"><b>Question:</b> Do you drink enough cups of water each day?</div>
+            <div class="q"><b>What it measures:</b> The number of cups of water drunk each day.</div>
+            <div class="q"><b>How it helps:</b> Drinking enough water helps people stay healthy and avoid dehydration.</div>
+          </div>
+        </div>
+
         <div class="card">
           <h2><span class="drop">💧</span>Daily Goal: <span id="goalText">8 Cups</span></h2>
 
-          <!-- Mini preview row (Mon..Sun) -->
           <div class="mini-cups" id="miniCups"></div>
           <div class="days-mini">
             <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
@@ -265,16 +276,13 @@
   const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
   const cupsPerDay = 8;
 
-  // Storage keys
   const KEY = "healthyme_week_v1";
   const SEL = "healthyme_selected_day_v1";
 
-  // Load or init data: { Mon: [bool x8], ... }
   let data = JSON.parse(localStorage.getItem(KEY)) || Object.fromEntries(
     days.map(d => [d, Array(cupsPerDay).fill(false)])
   );
 
-  // Selected day for editing (defaults to today)
   const todayIndex = (() => {
     const js = new Date().getDay(); // Sun=0
     return (js === 0) ? 6 : js - 1; // Mon=0..Sun=6
@@ -298,13 +306,12 @@
 
   function renderMini(){
     miniCupsEl.innerHTML = "";
-    days.forEach((d, idx) => {
+    days.forEach((d) => {
       const filled = countFilled(d);
       const mini = document.createElement("div");
       mini.className = "mini" + (filled >= cupsPerDay ? " purple" : "");
       if (filled > 0) mini.classList.add("filled");
 
-      // show selection ring
       if (d === selectedDay) {
         mini.style.outline = "3px solid rgba(79,172,254,.55)";
         mini.style.outlineOffset = "3px";
@@ -338,15 +345,11 @@
         const c = document.createElement("div");
         c.className = "cup";
 
-        // Only allow clicking cups for selected day (matches “edit this day” feel)
         const clickable = (d === selectedDay);
         c.style.opacity = clickable ? "1" : ".55";
         c.style.pointerEvents = clickable ? "auto" : "none";
 
-        // filled state
         if (data[d][i]) c.classList.add("filled");
-
-        // if day completed -> use purple style (like the image having color variation)
         if (countFilled(d) >= cupsPerDay) c.classList.add("purple");
 
         c.title = clickable ? "Tap to toggle" : `Select ${d} above to edit`;
@@ -359,7 +362,6 @@
         cups.appendChild(c);
       }
 
-      // Highlight the selected day row
       if (d === selectedDay){
         row.style.padding = "10px";
         row.style.borderRadius = "16px";
